@@ -1,7 +1,7 @@
-id=PropsAndroidRoot
+id=MagiskHidePropsConf
 name=Props Android Root
 version=v6.1.2-v137
 versionCode=75
 settingsVersion=40
-author=Didgeridoohan mod radan775
+author=Didgeridoohan, moded by radan775
 description=Change your device's fingerprint, to pass SafetyNet's CTS Profile check. Set/reset MagiskHide sensitive prop values. Change any prop values easily, and set your own custom props.
