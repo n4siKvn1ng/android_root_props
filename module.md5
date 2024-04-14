@@ -1,6 +1,6 @@
 a96f0cf243927531a1898c27143906ea  ./common/bootlog.sh
-3f9013bacd6573216f4476eee72e9b3e  ./common/propsconf_late
-dddf745abb1eb6387f1396a8c1e4bf22  ./common/util_functions.sh
+e92815908a60ca99bb33fb27b5d42315  ./common/propsconf_late
+6f1a699384ddd105f831b0a8e09900fe  ./common/util_functions.sh
 b48a3faaac5b116c9214033f0c65eebb  ./META-INF/com/google/android/update-binary
 b39cd178923d60d67de5c5b81a78c242  ./META-INF/com/google/android/updater-script
 b06d32a4e53bc06968c1dc1eb035358c  ./system/binpath/props
