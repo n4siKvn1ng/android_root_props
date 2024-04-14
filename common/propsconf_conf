@@ -22,17 +22,17 @@ CONFBASICATTEST=false
 CONFBASICATTCUST=""
 
 # Device simulation
-CONFDEVSIM=false
-CONFBRAND=false
-CONFNAME=false
-CONFDEVICE=false
-CONFRELEASE=false
-CONFID=false
-CONFINCREMENTAL=false
-CONFDISPLAY=false
-CONFSDK=false
-CONFMANUFACTURER=false
-CONFMODEL=false
+CONFDEVSIM=true
+CONFBRAND=true
+CONFNAME=true
+CONFDEVICE=true
+CONFRELEASE=true
+CONFID=true
+CONFINCREMENTAL=true
+CONFDISPLAY=true
+CONFSDK=true
+CONFMANUFACTURER=true
+CONFMODEL=true
 CONFDESCRIPTION=true
 CONFPARTPROPS=true
 CONFSIMBOOT=default
@@ -80,9 +80,9 @@ CONFPROPSOFTBOOT=false
 # Module settings
 CONFBOOT=default
 CONFCOLOUR=true
-CONFWEBP=true
-CONFWEBU=true
-CONFUPDATE=true
+CONFWEBP=false
+CONFWEBU=false
+CONFUPDATE=false
 CONFBACK=false
 
 # =================================================================
