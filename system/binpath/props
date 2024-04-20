@@ -4545,156 +4545,156 @@ fi
 # =================== Options, etc ===================
 # ====================================================
 
-# Testing connection
-test_connection "$1"
+# # Testing connection
+# test_connection "$1"
 
-if [ "$1" ]; then
-	invalid_option() {
-		log_handler "Invalid option."
-		clear
-		menu_header "${C}Help${N}"
-		echo ""
-		echo -e "${R}Invalid option.${N}"
-		echo ""
-		echo "Try again without options,"
-		echo "or use -h for help and details."
-		echo ""
-		log_handler "Exiting... Bye bye.\n\n===================="
-		exit 0
-	}
+# if [ "$1" ]; then
+# 	invalid_option() {
+# 		log_handler "Invalid option."
+# 		clear
+# 		menu_header "${C}Help${N}"
+# 		echo ""
+# 		echo -e "${R}Invalid option.${N}"
+# 		echo ""
+# 		echo "Try again without options,"
+# 		echo "or use -h for help and details."
+# 		echo ""
+# 		log_handler "Exiting... Bye bye.\n\n===================="
+# 		exit 0
+# 	}
 
-	# Check for second input variable. If found, set custom prop
-	if [ "$2" ]; then
-		log_handler "Setting custom prop from command prompt."
-		clear
-		menu_set_custprop "$1" "$2" "$(getprop $1)" "option"
-		clear
-		echo "Done."
-		echo ""
-		log_handler "Exiting... Bye bye.\n\n===================="
-		exit 0
-	else
-		case "$1" in
-			*\.*|*\=*) invalid_option
-			;;
-			*d*|*f*|*l*|*h*|*nc*|*nw*|*r*|*s*|*t*|*u*) # Do nothing
-			;;
-			*) invalid_option
-			;;
-		esac
-	fi
+# 	# Check for second input variable. If found, set custom prop
+# 	if [ "$2" ]; then
+# 		log_handler "Setting custom prop from command prompt."
+# 		clear
+# 		menu_set_custprop "$1" "$2" "$(getprop $1)" "option"
+# 		clear
+# 		echo "Done."
+# 		echo ""
+# 		log_handler "Exiting... Bye bye.\n\n===================="
+# 		exit 0
+# 	else
+# 		case "$1" in
+# 			*\.*|*\=*) invalid_option
+# 			;;
+# 			*d*|*f*|*l*|*h*|*nc*|*nw*|*r*|*s*|*t*|*u*) # Do nothing
+# 			;;
+# 			*) invalid_option
+# 			;;
+# 		esac
+# 	fi
 
-	# Check non-combinable options
-	for ITEM1 in $SOLORUN; do
-		case "$1" in
-			*$ITEM1*)
-				for ITEM2 in $SOLORUN; do
-					if [ "$ITEM1" != "$ITEM2" ]; then
-						case "$1" in
-							*$ITEM2*)
-								invalid_option
-							;;
-						esac
-					fi
-				done
-			;;
-		esac
-	done
+# 	# Check non-combinable options
+# 	for ITEM1 in $SOLORUN; do
+# 		case "$1" in
+# 			*$ITEM1*)
+# 				for ITEM2 in $SOLORUN; do
+# 					if [ "$ITEM1" != "$ITEM2" ]; then
+# 						case "$1" in
+# 							*$ITEM2*)
+# 								invalid_option
+# 							;;
+# 						esac
+# 					fi
+# 				done
+# 			;;
+# 		esac
+# 	done
 
-	# Help menu
-	case "$1" in
-		-h)
-			log_handler "Showing help (-h)."
-			clear
-			menu_header "${C}Help${N}"
-			echo ""
-			echo -e $(echo $(get_file_value $MODPATH/module.prop "description=") | sed 's|, |,\\n|g' | sed 's|\. |\.\\n|g')
-			echo ""
-			echo "Usage: props NAME VALUE"
-			echo "   or: props [options]..."
-			echo ""
-			echo "Entering a property NAME and VALUE will save"
-			echo "this information to the module settings as custom"
-			echo "prop values."
-			echo ""
-			echo "Options:"
-			echo "  -d		*Update to fingerprints test list during start."
-			echo "  -f		*Update fingerprints list during start."
-			echo "  -l		*Save module logs and info."
-			echo "  -h		*Show this message."
-			echo "  -nc		Run without colours."
-			echo "  -nw		Run without connecting to the web during start."
-			echo "  -r		*Reset all options/settings."
-			echo "  -s		*Open script settings menu."
-			echo "  -t		Activate test mode."
-			echo "  -u		*Perform a module update check during start."
-			echo ""
-			echo "Options marked with an asterisk (*) cannot be"
-			echo "combined with each other."
-			echo ""
-			echo "See the module readme or the"
-			echo "support thread @ XDA for details."
-			echo ""
-			log_handler "Exiting... Bye bye.\n\n===================="
-			exit 0
-		;;
-	esac
+# 	# Help menu
+# 	case "$1" in
+# 		-h)
+# 			log_handler "Showing help (-h)."
+# 			clear
+# 			menu_header "${C}Help${N}"
+# 			echo ""
+# 			echo -e $(echo $(get_file_value $MODPATH/module.prop "description=") | sed 's|, |,\\n|g' | sed 's|\. |\.\\n|g')
+# 			echo ""
+# 			echo "Usage: props NAME VALUE"
+# 			echo "   or: props [options]..."
+# 			echo ""
+# 			echo "Entering a property NAME and VALUE will save"
+# 			echo "this information to the module settings as custom"
+# 			echo "prop values."
+# 			echo ""
+# 			echo "Options:"
+# 			echo "  -d		*Update to fingerprints test list during start."
+# 			echo "  -f		*Update fingerprints list during start."
+# 			echo "  -l		*Save module logs and info."
+# 			echo "  -h		*Show this message."
+# 			echo "  -nc		Run without colours."
+# 			echo "  -nw		Run without connecting to the web during start."
+# 			echo "  -r		*Reset all options/settings."
+# 			echo "  -s		*Open script settings menu."
+# 			echo "  -t		Activate test mode."
+# 			echo "  -u		*Perform a module update check during start."
+# 			echo ""
+# 			echo "Options marked with an asterisk (*) cannot be"
+# 			echo "combined with each other."
+# 			echo ""
+# 			echo "See the module readme or the"
+# 			echo "support thread @ XDA for details."
+# 			echo ""
+# 			log_handler "Exiting... Bye bye.\n\n===================="
+# 			exit 0
+# 		;;
+# 	esac
 
-	# Run options
-	case "$1" in
-		*d*) # Download developers prints list, for testing prints
-			download_prints "Dev" "$1"
-		;;
-		*f*) # Update fingerprints list
-			download_prints "f" "$1"
-		;;
-		*l*) # Save logs
-			menu_logs "Collect logs" "l"
-		;;
-		*r*) # Reset all settings
-			reset_everything "Reset all settings" "r"
-		;;
-		*s*) # Open settings menu
-			menu_options "Script settings" "s"
-		;;
-		*u*) # Perform an update check
-			update_check "" "$1"
-		;;
-	esac
-fi
+# 	# Run options
+# 	case "$1" in
+# 		*d*) # Download developers prints list, for testing prints
+# 			download_prints "Dev" "$1"
+# 		;;
+# 		*f*) # Update fingerprints list
+# 			download_prints "f" "$1"
+# 		;;
+# 		*l*) # Save logs
+# 			menu_logs "Collect logs" "l"
+# 		;;
+# 		*r*) # Reset all settings
+# 			reset_everything "Reset all settings" "r"
+# 		;;
+# 		*s*) # Open settings menu
+# 			menu_options "Script settings" "s"
+# 		;;
+# 		*u*) # Perform an update check
+# 			update_check "" "$1"
+# 		;;
+# 	esac
+# fi
 
-# Download fingerprints list and perform a module update check, if enabled
-if [ "$OPTIONWEBP" == 1 ] || [ "$OPTIONWEBU" == 1 ]; then
-	case "$1" in
-		*d*|*f*|*u*)
-			case "$1" in
-				*d*|*f*) # Don't download prints
-					if [ "$OPTIONWEBU" == 1 ]; then
-						update_check "" "$1"
-					fi
-				;;
-				*u*) # Don't perform the update check
-					if [ "$OPTIONWEBP" == 1 ]; then
-						download_prints "" "$1"
-					fi
-				;;
-			esac
-		;;
-		*)
-			if [ "$OPTIONWEBP" == 1 ]; then
-				download_prints "" "$1"
-			fi
-			if [ "$OPTIONWEBU" == 1 ]; then
-				update_check "" "$1"
-			fi
-		;;
-	esac
-fi
+# # Download fingerprints list and perform a module update check, if enabled
+# if [ "$OPTIONWEBP" == 1 ] || [ "$OPTIONWEBU" == 1 ]; then
+# 	case "$1" in
+# 		*d*|*f*|*u*)
+# 			case "$1" in
+# 				*d*|*f*) # Don't download prints
+# 					if [ "$OPTIONWEBU" == 1 ]; then
+# 						update_check "" "$1"
+# 					fi
+# 				;;
+# 				*u*) # Don't perform the update check
+# 					if [ "$OPTIONWEBP" == 1 ]; then
+# 						download_prints "" "$1"
+# 					fi
+# 				;;
+# 			esac
+# 		;;
+# 		*)
+# 			if [ "$OPTIONWEBP" == 1 ]; then
+# 				download_prints "" "$1"
+# 			fi
+# 			if [ "$OPTIONWEBU" == 1 ]; then
+# 				update_check "" "$1"
+# 			fi
+# 		;;
+# 	esac
+# fi
 
-# Check if fingerprints testing is active
-if [ "$(get_file_value $PRINTSLOC "PRINTSV=")" == "Dev" ]; then
-	DEVPRINTS=true
-fi
+# # Check if fingerprints testing is active
+# if [ "$(get_file_value $PRINTSLOC "PRINTSV=")" == "Dev" ]; then
+# 	DEVPRINTS=true
+# fi
 
 # ===================================================
 # ==================== Main menu ====================

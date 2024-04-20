@@ -3,7 +3,7 @@ e92815908a60ca99bb33fb27b5d42315  ./common/propsconf_late
 6f1a699384ddd105f831b0a8e09900fe  ./common/util_functions.sh
 b48a3faaac5b116c9214033f0c65eebb  ./META-INF/com/google/android/update-binary
 b39cd178923d60d67de5c5b81a78c242  ./META-INF/com/google/android/updater-script
-b06d32a4e53bc06968c1dc1eb035358c  ./system/binpath/props
+e2c0bca09c04947819768660bee3c71f  ./system/binpath/props
 2ebdaa110fc9293412435a522e3bdd17  customize.sh
 ad90c2919ec8c2f21003dd99edb3e1d3  post-fs-data.sh
 fcdca3c8d13ba9c39b74f6624844ed5d  service.sh
