@@ -1,4 +1,4 @@
-	#!/system/bin/sh
+#!/system/bin/sh
 
 # MagiskHide Props Config
 # Copyright (c) 2018-2021 Didgeridoohan @ XDA Developers
@@ -6,6 +6,7 @@
 
 ADBPATH=/data/adb
 MHPCPATH=$ADBPATH/mhpc
+mkdir -pv $MHPCPATH
 if [ "$INSTFN" ]; then
 	LOGFILE=$MHPCPATH/propsconf_install.log
 else
@@ -14,7 +15,7 @@ fi
 
 # Checking Magisk Busybox
 if [ -z "$INSTFN" ] && [ "$BOOTSTAGE" != "post" -a "$BOOTSTAGE" != "late" ]; then
-	for BBPATH in $ADBPATH/ksu/bin/busybox $ADBPATH/magisk/busybox; do
+	for BBPATH in $ADBPATH/ksu/bin/busybox $ADBPATH/magisk/busybox $ADBPATH/ap/bin/busybox; do
 		[ -f "$BBPATH" ] && break
 	done
 	if [ -f "$BBPATH" ]; then
@@ -175,6 +176,8 @@ if [ "$BOOTSTAGE" == "props" ]; then
 		alias resetprop="$ADBPATH/ksu/bin resetprop"
 	elif [ -e "$ADBPATH/magisk" ]; then
 		alias resetprop="$ADBPATH/magisk/magisk resetprop"
+	elif [ -e "$ADBPATH/ap" ]; then
+		alias resetprop="$ADBPATH/ap/bin resetprop"
 	fi
 fi
 
@@ -664,12 +667,17 @@ reboot_fn() {
 				echo -en "Enter ${G}y${N}(es) or ${G}n${N}(o): "
 				INV1=2
 			else
-				echo -en "Enter ${G}y${N}(es), ${G}n${N}(o) or ${G}e${N}(xit): "
+				echo -e "Enter ${G}y${N}(es), ${G}n${N}(o) or ${G}e${N}(xit) "
+				echo -e "${Y}[d]${N} ${W}device simulation plus${N} ${G}(New Trick) ${N}"
+				echo -en "Enter choice:"
 				INV1=3
 			fi
+			#INPUT5="d"
 			read -r INPUT5
 		fi
 		case "$INPUT5" in
+			d|D) add_props_plus
+			;;
 			y|Y) force_reboot
 			;;
 			n|N)
@@ -1434,6 +1442,23 @@ print_edit() {
 			log_handler "Changing/writing ro.build.description is disabled."
 		fi
 	fi
+}
+
+#Copy system.prop to shortcut
+add_props_plus() {
+   echo -e "${Y}Menambahkan beberapa simulasi${N}"
+   echo -e "ro.product.board=sdm$(head -3 /dev/urandom | tr -cd '6-9' | cut -c -2)0" >> $MODPATH/system.prop
+   # echo -e "ro.board.platform=sdm$(head -3 /dev/urandom | tr -cd '6-9' | cut -c -2)0" >> $MODPATH/system.prop
+   echo -e "ro.build.user=$(head -3 /dev/urandom | tr -cd 'a-zA-Z0-9' | cut -c -8)" >> $MODPATH/system.prop
+   echo -e "ro.build.product=$(head -3 /dev/urandom | tr -cd 'a-zA-Z0-9' | cut -c -7)" >> $MODPATH/system.prop
+   echo -e "ro.build.flavor=$(head -3 /dev/urandom | tr -cd 'a-zA-Z0-9.' | cut -c -9)" >> $MODPATH/system.prop
+   echo -e "ro.build.host=$(head -3 /dev/urandom | tr -cd 'a-zA-Z0-9.' | cut -c -12)" >> $MODPATH/system.prop
+   sleep 1
+   echo -e ""
+   echo -e "Kembali ke halaman sebelumnya"
+   sleep 1	
+   clear
+   exit_fn
 }
 
 # Edit security patch date if included, $1=file to add prop info to

@@ -1,0 +1,225 @@
+#!/system/bin/sh
+
+# Use colours
+G='\e[01;32m'    # GREEN
+R='\e[01;31m'    # RED
+Y='\e[01;33m'    # YELLOW
+B='\e[01;34m'    # BLUE
+V='\e[01;35m'    # VIOLET
+Bl='\e[01;30m'   # BLACK
+C='\e[01;36m'    # CYAN
+W='\e[01;37m'    # WHITE
+N='\e[00;37;40m' # NEUTRAL
+
+banner() {
+	echo -e "${G}==========================================${N}"
+	echo -e "         ${R}TEAM WHOTE${N}"
+	echo -e ""
+	echo -e ""
+	echo -e ""
+	echo -e ""
+	echo -e "${G}==========================================${N}"
+} 
+           
+customemodul() {
+	echo $(head -3 /dev/urandom | tr -cd 'A-Z' | cut -c -9)$(head -3 /dev/urandom | tr -cd '1-9' | cut -c -1)           
+} 
+
+propcustome() {
+	echo TB1A.$(head -3 /dev/urandom | tr -cd '123456789' | cut -c -6).$(head -3 /dev/urandom | tr -cd '0123456789' | cut -c -3)
+}            
+
+verifjanda() {
+	clear
+	banner
+	echo -e "       *${Y}TEAM WHOTE${N}*"
+	echo ""
+	echo ""
+	mount -o rw,remount /
+	sleep 0.2
+	echo "_______________TEAM WHOTE____________"
+	sleep 1   
+	# d
+	sed -i '/ro.product.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.system.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.vendor.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.product.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.product.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.odm.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.system_ext.brand=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	
+	# Tulis ro. di txt
+	echo "_____________TEAM WHOTE_________"
+	sleep 5
+	
+	#clonebrand
+	echo -e "ro.product.system.brand=$(customemodul)" >> /data/local/tmp/build.txt
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/local/tmp/system2.txt
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/local/tmp/systemext.txt
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/local/tmp/vendor2.txt
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/local/tmp/odm.txt
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/local/tmp/product.txt
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/local/tmp/vendor.txt
+	#rename
+	sed -i 's/ro.product.system.brand=/ro.product.brand=/' /data/local/tmp/system2.txt
+	sed -i 's/ro.product.system.brand=/ro.product.vendor.brand=/' /data/local/tmp/systemext.txt
+	sed -i 's/ro.product.system.brand=/ro.product.product.brand=/' /data/local/tmp/vendor2.txt
+	sed -i 's/ro.product.system.brand=/ro.product.odm.brand=/' /data/local/tmp/odm.txt
+	sed -i 's/ro.product.system.brand=/ro.product.system_ext.brand=/' /data/local/tmp/product.txt
+	#kembalikan
+	grep -i "ro.product.brand=/*" /data/local/tmp/system2.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.vendor.brand=/*" /data/local/tmp/systemext.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.product.brand=/*" /data/local/tmp/vendor2.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.odm.brand=/*" /data/local/tmp/odm.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.system_ext.brand=/*" /data/local/tmp/product.txt >> /data/local/tmp/build.txt
+	
+	# Copy ro. ke hideprop
+	echo "_________________TOR MAS BOY______________"
+	sleep 1
+	#brand
+	grep -i "ro.product.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.system.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.vendor.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.product.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.product.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.odm.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.system_ext.brand=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	
+	sleep 0.2
+	echo ""
+	sleep 5
+	echo ""
+	sleep 1
+	echo ""
+	sleep 1
+	rm -f /data/local/tmp/build.txt
+	rm -f /data/local/tmp/system2.txt
+	rm -f /data/local/tmp/vendor.txt
+	rm -f /data/local/tmp/vendor2.txt
+	rm -f /data/local/tmp/systemext.txt
+	rm -f /data/local/tmp/product.txt
+	rm -f /data/local/tmp/odm.txt
+	
+	mount -o ro,remount /
+	clear
+}
+		
+verifjanda
+		
+echo -e "${G}==========================================${N}"
+{
+	echo $(head -3 /dev/urandom | tr -cd 'A-Z' | cut -c -9)$(head -3 /dev/urandom | tr -cd '1-9' | cut -c -1)           
+}
+
+propcustome() {
+	echo TB1A.$(head -3 /dev/urandom | tr -cd '123456789' | cut -c -6).$(head -3 /dev/urandom | tr -cd '0123456789' | cut -c -3)
+}            
+
+verifjanda() {
+	clear
+	banner
+	echo -e "       *${Y}TEAM WHOTE${N}*"
+	echo ""
+	echo ""
+	mount -o rw,remount /
+	sleep 0.2
+	echo "_______________TEAM WHOTE____________"
+	sleep 1   
+# d
+	sed -i '/ro.product.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.system.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.vendor.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.product.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.product.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.odm.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	sed -i '/ro.product.system_ext.model=/d' /data/adb/modules/MagiskHidePropsConf/system.prop
+	
+	# Tulis ro. di txt
+	echo "_____________TEAM WHOTE_________"
+	sleep 5
+	
+	#clonemodel
+	echo -e "ro.product.system.model=$(customemodul)" >> /data/local/tmp/build.txt
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/local/tmp/system2.txt
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/local/tmp/systemext.txt
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/local/tmp/vendor2.txt
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/local/tmp/odm.txt
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/local/tmp/product.txt
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/local/tmp/vendor.txt
+	#rename
+	sed -i 's/ro.product.system.model=/ro.product.model=/' /data/local/tmp/system2.txt
+	sed -i 's/ro.product.system.model=/ro.product.vendor.model=/' /data/local/tmp/systemext.txt
+	sed -i 's/ro.product.system.model=/ro.product.product.model=/' /data/local/tmp/vendor2.txt
+	sed -i 's/ro.product.system.model=/ro.product.odm.model=/' /data/local/tmp/odm.txt
+	sed -i 's/ro.product.system.model=/ro.product.system_ext.model=/' /data/local/tmp/product.txt
+	#kembalikan
+	grep -i "ro.product.model=/*" /data/local/tmp/system2.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.vendor.model=/*" /data/local/tmp/systemext.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.product.model=/*" /data/local/tmp/vendor2.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.odm.model=/*" /data/local/tmp/odm.txt >> /data/local/tmp/build.txt
+	grep -i "ro.product.system_ext.model=/*" /data/local/tmp/product.txt >> /data/local/tmp/build.txt
+	
+	
+	# Copy ro. ke hideprop
+	echo "__________________BOY WHOTE______________"
+	sleep 1
+	#model
+	grep -i "ro.product.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.system.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.vendor.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.product.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.product.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.odm.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	grep -i "ro.product.system_ext.model=/*" /data/local/tmp/build.txt >> /data/adb/modules/MagiskHidePropsConf/system.prop
+	
+	sleep 0.2
+	echo "TEAM WHOTE"
+	sleep 5
+	echo ""
+	sleep 1
+	echo ""
+	sleep 1
+	rm -f /data/local/tmp/build.txt
+	rm -f /data/local/tmp/system2.txt
+	rm -f /data/local/tmp/vendor.txt
+	rm -f /data/local/tmp/vendor2.txt
+	rm -f /data/local/tmp/systemext.txt
+	rm -f /data/local/tmp/product.txt
+	rm -f /data/local/tmp/odm.txt
+	
+	mount -o ro,remount /
+	clear
+}
+
+verifjanda
+{
+	sleep 0.5
+	echo ""
+	sleep 1
+	su -c am force-stop com.lazada.android
+	su -c pm clear com.lazada.android
+	su -c pm clear com.google.android.overlay.gmsconfig.common
+	su -c pm clear com.google.android.overlay.gmsconfig.gsa
+	su -c pm clear com.google.android.apps.wellbeing
+	su -c pm clear com.google.android.gms
+	su -c pm clear com.google.android.gms.unstable
+	su -c pm clear com.google.android.gsf
+	su -c pm clear com.google.android.ims
+	su -c pm clear com.android.vending
+	su -c pm clear com.android.webview
+	su -c pm clear android
+	su -c pm clear com.shopee.id
+	su -c am force-stop com.google.android.overlay.gmsconfig.common
+	su -c am force-stop com.google.android.overlay.gmsconfig.gsa
+	su -c am force-stop com.google.android.apps.wellbeing
+	su -c am force-stop com.google.android.gms
+	su -c am force-stop com.google.android.gms.unstable
+	su -c am force-stop com.google.android.gsf
+	su -c am force-stop com.google.android.ims
+	su -c am force-stop com.android.vending
+	su -c am force-stop com.shopee.id
+	echo ""
+	echo -e "${Y}TEAM WHOTE END${N}"
+	sleep 3
+	su -c reboot
+}

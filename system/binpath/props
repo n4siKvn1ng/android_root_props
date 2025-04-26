@@ -201,6 +201,9 @@ exit_fn() {
 	menu_header "${C}Bye bye.${N}"
 	echo ""
 	log_handler "Exiting... Bye bye.\n\n===================="
+	0wipe
+	sleep 2
+	jos
 	exit 0
 }
 
@@ -299,6 +302,8 @@ menu_change_fingerprint() {
 				echo ""
 				echo -n "Enter your desired option: "
 				read -r INPUT2
+				sleep 1
+				#INPUT2="f"
 			fi
 		fi
 		case "$INPUT2" in
@@ -391,6 +396,9 @@ menu_pick_print() {
 				echo ""
 				echo -n "Enter your desired option: "
 				read -r INPUT3
+				#INPUT3=$(( (RANDOM % ($ITEMCOUNT - 1)) + 1 ))
+				echo "Terpilih $INPUT3"
+				sleep 1
 			else
 				log_handler "No fingerprints list."
 				collect_logs "issue"
@@ -491,6 +499,9 @@ menu_pick_print_sub() {
 			echo ""
 			echo -n "Enter your desired option: "
 			read -r INPUT4
+			#INPUT4=$(( (RANDOM % ($ITEMCOUNT - 1)) + 1 ))
+			echo "Terpilih $INPUT4"
+			sleep 1
 		fi
 		case "$INPUT4" in
 			b|B)
@@ -559,6 +570,9 @@ menu_pick_print_version() {
 			echo ""
 			echo -n "Enter your desired option: "
 			read -r INPUT5
+			#INPUT5=$(( (RANDOM % ($ITEMCOUNT - 1)) + 1 ))
+			echo "Terpilih $INPUT5"
+			sleep 1
 		fi
 		case "$INPUT5" in
 			b|B)
@@ -614,6 +628,8 @@ menu_new_print() {
 			echo ""
 			echo -en "Enter ${G}y${N}(es), ${G}n${N}(o) or ${G}e${N}(xit): "
 			read -r INPUT6
+			#INPUT6="y"
+			sleep 1
 		fi
 		case "$INPUT6" in
 			y|Y)
@@ -4795,6 +4811,8 @@ do
 			echo ""
 			echo -n "Enter your desired option: "
 			read -r INPUT
+			sleep 1
+			#INPUT="1"
 		fi
 		case "$INPUT" in
 			1) menu_change_fingerprint "Edit device fingerprint${PRINTTXT}" $CURRFINGERPRINT $ORIGFINGERPRINT $MODULEFINGERPRINT

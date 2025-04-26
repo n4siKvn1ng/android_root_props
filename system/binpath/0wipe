@@ -1,0 +1,92 @@
+#!/system/bin/sh
+
+settings put global airplane_mode_on 1
+am broadcast -a android.intent.action.AIRPLANE_MODE
+sleep 0.2
+
+# Use colours
+G='\e[01;32m'    # GREEN
+R='\e[01;31m'    # RED
+Y='\e[01;33m'    # YELLOW
+B='\e[01;34m'    # BLUE
+V='\e[01;35m'    # VIOLET
+Bl='\e[01;30m'   # BLACK
+C='\e[01;36m'    # CYAN
+W='\e[01;37m'    # WHITE
+N='\e[00;37;40m' # NEUTRAL
+banner() {
+	echo -e "${Y}============================${N}"
+	echo -e "${R}========TORBES===WIPE=======${N}"
+	echo -e "${R}========RITUAL==SANTET======${N}"
+	} 
+
+{
+clear
+banner
+echo -e "${Y}============================${N}"
+echo""
+	echo ""
+#mount -o rw,remount /
+sleep 1
+#del
+am force-stop com.lazada.android
+am force-stop com.microsoft.office.outlook
+am force-stop com.ss.android.ugc.trill
+am force-stop com.chrome.beta
+am force-stop com.shopee.id
+am force-stop com.shopeepay.id
+pm clear com.lazada.android
+pm clear com.chrome.beta
+pm clear com.microsoft.office.outlook
+pm clear com.ss.android.ugc.trill
+pm clear mark.via.gp
+pm clear com.shopee.id
+pm clear com.shopeepay.id
+rm -r /storage/emulated/0/Android/data/.*
+rm -r /storage/emulated/0/Android/data/*
+rm -r /storage/emulated/0/Android/obb/.*
+rm -r /storage/emulated/0/Android/obb/*
+rm -r /storage/emulated/0/Android/media/.*
+rm -r /storage/emulated/0/Android/media/*
+rm -r /storage/emulated/0/Android/.*
+rm -r /storage/emulated/0/Android/*
+rm -r /storage/emulated/0/.mixplorer
+rm -r /storage/BA23-1D05/Android
+rm -r /storage/emulated/0/Alarms
+rm -r /storage/emulated/0/Audiobooks
+rm -r /storage/emulated/0/DCIM
+rm -r /storage/emulated/0/Documents
+rm -r /storage/emulated/0/Download
+rm -r /storage/emulated/0/Fox
+rm -r /storage/emulated/0/Movies
+rm -r /storage/emulated/0/Music
+rm -r /storage/emulated/0/Notifications
+rm -r /storage/emulated/0/Pictures
+rm -r /storage/emulated/0/Podcasts
+rm -r /storage/emulated/0/Ringtones
+rm -r /storage/emulated/0/MT2
+rm -r /storage/emulated/0/Telegram
+rm -r /data/user/0/com.android.webview/.*
+rm -r /data/user/0/com.android.webview/*
+rm -r /data/system/package_cache/.*
+rm -r /data/system/package_cache/*
+rm -r /data/system/graphicsstats/.*
+rm -r /data/system/graphicsstats/*
+sleep 0.2
+rm -r /storage/emulated/0/Android/data/.*
+rm -r /storage/emulated/0/Android/data/*
+rm -r /storage/emulated/0/Android/obb/.*
+rm -r /storage/emulated/0/Android/obb/*
+rm -r /storage/emulated/0/Android/media/.*
+rm -r /storage/emulated/0/Android/media/*
+rm -r /storage/emulated/0/Android/.*
+rm -r /storage/emulated/0/Android/*
+rm -r /storage/emulated/0/.mixplorer
+rm -r /storage/BA23-1D05/Android
+rm -r /storage/emulated/0/MT2
+rm -r /storage/emulated/0/data
+rm -r /storage/emulated/0/Download
+sleep 1
+echo -e "${Y}=======S U C C E S S=======${N}"
+}
+exit

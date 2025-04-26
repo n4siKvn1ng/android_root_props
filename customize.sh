@@ -8,6 +8,66 @@
 INSTFN=true
 . $MODPATH/common/util_functions.sh
 
+sdk_ver=$(getprop ro.build.version.sdk)
+
+sdk_cek_30(){
+  if [ $sdk_ver = 30 ]; then
+  rm -rf "${MODPATH}"/common/prints.sh
+  cp -f "${MODPATH}"/list_fp/A11.sh $MODPATH/common/prints.sh
+  ui_print "- Terdeteksi Android 11"
+  ui_print "- Install props Android 11"
+  
+  fi
+}
+
+sdk_cek_31(){
+  if [ $sdk_ver = 31 ]; then
+  rm -rf "${MODPATH}"/common/prints.sh
+  cp -f "${MODPATH}"/list_fp/A12.sh $MODPATH/common/prints.sh
+  ui_print "- Terdeteksi Android 12"
+  ui_print "- Install props Android 12"
+  
+  fi
+}
+
+sdk_cek_32(){
+  if [ $sdk_ver = 32 ]; then
+  rm -rf "${MODPATH}"/common/prints.sh
+  cp -f "${MODPATH}"/list_fp/A12L.sh $MODPATH/common/prints.sh
+  ui_print "- Terdeteksi Android 12L"
+  ui_print "- Install props Android 12L"
+  
+  fi
+}
+
+sdk_cek_33(){
+  if [ $sdk_ver = 33 ]; then
+  rm -rf "${MODPATH}"/common/prints.sh
+  cp -f "${MODPATH}"/list_fp/A13.sh $MODPATH/common/prints.sh
+  ui_print "- Terdeteksi Android 13"
+  ui_print "- Install props Android 13"
+  
+  fi
+}
+
+sdk_cek_34(){
+  if [ $sdk_ver = 34 ]; then
+  rm -rf "${MODPATH}"/common/prints.sh
+  cp -f "${MODPATH}"/list_fp/A14.sh $MODPATH/common/prints.sh
+  ui_print "- Terdeteksi Android 14"
+  ui_print "- Install props Android 14"
+  
+  fi
+}
+
+sdk_cek(){
+  sdk_cek_30
+  sdk_cek_31
+  sdk_cek_32
+  sdk_cek_33
+  sdk_cek_34
+}
+
 # Print module info
 ui_print ""
 ui_print "************************"
@@ -16,7 +76,7 @@ ui_print "************************"
 ui_print ""
 
 # Remove module directory if it exists on a fresh install
-if [ ! -d "$MODULESPATH/MagiskHidePropsConf"] && [ -d "$MHPCPATH" ]; then
+if [ ! -d "$MODULESPATH/MagiskHidePropsConf" ] && [ -d "$MHPCPATH" ]; then
   rm -rf $MHPCPATH
 fi
 
@@ -46,12 +106,21 @@ if [ "$(md5sum -c module.md5 | grep FAILED)" ]; then
   ui_print ""
   abort "! Aborting install!"
 else
+  ui_print "- Cek Android SDK"
+  sleep 2
+  ui_print "- Otomatis memilih props"
+  sleep 1
+  sdk_cek
+  sleep 2
+
   # Module script installation
   script_install
 
   # Permission
   log_print "- Setting permissions"
   set_perm $MODPATH/system/$BIN/props 0 0 0755
+  set_perm $MODPATH/system/$BIN/0wipe 0 0 0755
+  set_perm $MODPATH/system/$BIN/jos 0 0 0755
 
   # Cleanup
   rm -rf $MODPATH/META-INF
